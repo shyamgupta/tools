@@ -2,7 +2,7 @@ set noerrorbells
 set nowrap
 set number
 set relativenumber
-set autoindent
+set autoindent 
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -19,7 +19,8 @@ set wildmenu
 set ruler
 set vb
 set showmatch
-filetype plugin on 
+set backspace=indent,eol,start
+filetype plugin indent on 
 let python_highlight_all=1
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
