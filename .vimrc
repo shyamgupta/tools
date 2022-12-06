@@ -26,25 +26,23 @@ let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 abbr _bash #!/usr/bin/env bash
 colorscheme molokai
+hi Statement ctermfg=red
 let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '.'
 set cursorline
 set cursorcolumn
+set t_Co=256
 call plug#begin()
 Plug 'https://github.com/vim-airline/vim-airline' " Status bar
 Plug 'hashivim/vim-terraform'
 Plug 'Yggdroot/indentLine'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-" VIMSCRIPT -------------------------------------------------------------- {{{
 
-" This will enable code folding.
-" Use the marker method of folding.
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-" More Vimscripts code goes here.
-
-" }}}
-
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
