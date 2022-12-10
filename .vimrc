@@ -32,6 +32,7 @@ let g:indentLine_leadingSpaceChar = '.'
 set cursorline
 set cursorcolumn
 set t_Co=256
+autocmd BufReadPost *.yaml colorscheme molokai
 call plug#begin()
 Plug 'https://github.com/vim-airline/vim-airline' " Status bar
 Plug 'hashivim/vim-terraform'
