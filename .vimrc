@@ -31,19 +31,8 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '.'
 set cursorline
 set cursorcolumn
-set t_Co=256
-autocmd BufReadPost *.yaml colorscheme molokai
+colorscheme molokai
 call plug#begin()
 Plug 'https://github.com/vim-airline/vim-airline' " Status bar
-Plug 'hashivim/vim-terraform'
 Plug 'Yggdroot/indentLine'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

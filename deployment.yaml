@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: app-deployment
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: jenkins
+    template:
+        metadata:
+            labels:
+                app: jenkins
+        spec:
+            containers:
+                - name: nginx
+                  image: nginx
+            tolerations:
+                - key: "app"
+                  operator: "Equal"
+                  value: "jenkins"
+                  effect: "NoSchedule"
+            affinity:
+                nodeAffinity:
+                    requiredDuringSchedulingIgnoredDuringExecution:
+                        nodeSelectorTerms:
+                        - matchExpressions:
+                            - key: app
+                              operator: In
+                              values: 
+                              - critical
