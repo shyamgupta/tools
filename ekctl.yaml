@@ -1,9 +1,9 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 metadata:
-  name: eks-cluster
+  name: vote-cluster
   region: us-east-1
-  version: "1.21"
+  version: "1.20"
 nodegroups:
   - name: app
     minSize: 2
@@ -12,7 +12,6 @@ nodegroups:
       maxPrice: 0.017
       instanceTypes: ["t2.medium"]
       onDemandBaseCapacity: 0
-      onDemandPercentageAboveBaseCapacity: 0
   - name: tools
     minSize: 2
     maxSize: 2
@@ -21,8 +20,9 @@ nodegroups:
       instanceTypes: ["t2.medium"]
       onDemandBaseCapacity: 0
       onDemandPercentageAboveBaseCapacity: 50
-    labels: {tools: "true"}
+    labels: {"tools": "true"}
     taints:
       - key: tools
         value: "true"
         effect: NoSchedule
+availabilityZones: ['us-east-1a','us-east-1b']
