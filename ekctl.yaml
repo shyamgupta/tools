@@ -4,18 +4,19 @@ metadata:
   name: vote-cluster
   region: us-east-1
   version: "1.20"
-nodegroups:
+nodeGroups:
   - name: app
     minSize: 2
     maxSize: 2
-    instanceDistribution:
+    instancesDistribution:
       maxPrice: 0.017
       instanceTypes: ["t2.medium"]
       onDemandBaseCapacity: 0
+      onDemandPercentageAboveBaseCapacity: 0
   - name: tools
     minSize: 2
     maxSize: 2
-    instanceDistribution:
+    instancesDistribution:
       maxPrice: 0.017
       instanceTypes: ["t2.medium"]
       onDemandBaseCapacity: 0
