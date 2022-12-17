@@ -35,4 +35,8 @@ colorscheme molokai
 call plug#begin()
 Plug 'https://github.com/vim-airline/vim-airline' " Status bar
 Plug 'Yggdroot/indentLine'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

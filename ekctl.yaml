@@ -1,0 +1,28 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: eks-cluster
+  region: us-east-1
+  version: "1.20"
+nodegroups:
+  - name: app
+    minSize: 2
+    maxSize: 2
+    instanceDistribution:
+      maxPrice: 0.017
+      instanceType: ["t2.medium"]
+      onDemandBaseCapacity: 0
+      onDemandPercentageAboveBaseCapacity: 0
+      spotInstancePools: 2
+  - name: tools
+    minSize: 2
+    maxSize: 2
+    instanceDistribution:
+      maxPrice: 0.017
+      instanceType: ["t2.medium"]
+      onDemandBaseCapacity: 1
+      onDemandPercentageAboveBaseCapacity: 0
+    taints:
+      - key: example.com/tools
+        value: "true"
+        effect: NoSchedule
